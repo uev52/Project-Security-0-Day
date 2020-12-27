@@ -17,7 +17,7 @@ BackupVorm = input('hoe wilt u uw data backuppen opslaan 1) Local 2) Op de backu
 def BackupDirectory(sftp):
 
         DirPath = input('\ngeef hier de volledige pad waar u een backup van wilt opslaan: ')
-        BackupDestination = input('\ngeef hier vervolgens de bestemmings locatie/pad van de directory waar u de backup wilt hebben (sluit af met /): ')
+        BackupDestination = input('\ngeef hier vervolgens de bestemmings locatie/pad van de directory waar u de backup wilt hebben: ')
 
         DirFiles = os.listdir(DirPath)
         os.chdir(DirPath) #Veranderd huidige positie naar de backup directory
@@ -42,19 +42,19 @@ def BackupFile(sftp):
         os.chdir(DirRootFile)
         FileName = input('\ngeef de volledige naam van het bestand waar u een backup van wilt maken + extentie: ')
         absolutePath= os.path.abspath(FileName)
-        DestinationFile = input('\nVoer hier de directory pad in waar u de backup wilt habben: ')
+        DestinationFile = input('Voer hier de directory pad in waar u de backup wilt habben')
         print(absolutePath)
 
         #checkt of backup locaal of op remote server is
         if BackupVorm == '1':
                 shutil.copy(absolutePath, DestinationFile)
         elif BackupVorm == '2':# Als het op server plaats vin gebruik secure file transfer protecol
-                sftp.put(absolutePath, os.path.join(DestinationFile, FileName))
+                sftp.put(absolutePath, os.path.join(BackupDestination, fileName))
 
 class RemoteServer:
         # opent een connecte met de ssh host
         def OpenConnect():
-                Host = input("\nWat is de hostnaam van de server waar u verbinding mee wilt maken?: ")
+                Host = input("Wat is de hostnaam van de server waar u verbinding mee wilt maken?: ")
                 Port = int(input("Op welke poort draait de SSH service?: "))
                 Make = paramiko.Transport((Host,Port))
                 return Make
@@ -75,39 +75,39 @@ class RemoteServer:
                 if sftp: sftp.close()
                 if Make: Make.close()
                         
-#Voer dit uit als er gekozen is voor een lokale opslag van de backup
+
 if BackupVorm == '1':
 
         BD = bool(int(input('\nWilt du een hele directory backup (1= yes, 0= no): ')))
-        if BD != True: # deze conditie check wat voor keuze is gemaakt, backup hele directory of 1 file
+        if BD != True:
                 BF = bool(int(input('\nWilt du een file backup (1= yes, 0= no): ')))
-        #als er gekozen is voor een lokale backup van een hele directory
+
         if BD is True:
-                BackupDirectory('skip')# skip is er voor omdat de functie een argument (sftp) moet meegrijgen, maar niet nodig voor lokaal
-        #als er gekozen is voor een lokaal backup van 1 file
+                BackupDirectory('skip')
+
         elif BF is True:
                 BackupFile('skip')
 
-#Voer dit uit als her gekozen is voor opslag op een server
+
 elif BackupVorm == '2':
 
-        try:# als het kan import paramiko library om te kunnen werken met een server connectie
+        try:
                 import paramiko
 
-        except ModuleNotFoundError: #Als de library niet aanwezig is download deze met pip en import deze vervolgens
+        except ModuleNotFoundError:
 
                 import pip
                 pip.main(['install', 'paramiko'])
 
                 import paramiko
-        #deze functies zetten de hele rerver comunnictie tussen host en gast op
+
         Make = RemoteServer.OpenConnect()
         RemoteServer.Auth(Make)
         sftp = RemoteServer.Login(Make)
 
 
         BD = bool(int(input('Wilt du een hele directory backup (1= yes, 0= no): ')))
-        if BD != True:
+        if DB != True:
                 BF = bool(int(input('Wilt du een file backup (1= yes, 0= no): ')))
 
 
