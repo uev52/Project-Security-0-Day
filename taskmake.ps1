@@ -12,7 +12,7 @@ $tasktrigger
 # Register the new PowerShell scheduled task
 
 # The name of your scheduled task.
-$taskName = "Update server"
+$taskName = "Update server tool"
 
 # Describe the scheduled task.
 $description = "Update de server"
