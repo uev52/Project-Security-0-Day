@@ -17,10 +17,10 @@ De hooftaken zijn:
    
    Teamleden 0Day:
    
-    SCRUM-master: Üzeyir Ethem Varol (500835777),
-    Notulist:     Twenne Elffers (500831306), 
-    Voorlichter:  Tim Kunst (500828214), 
-    Trello:       Salman Mirza (500828131)
+    SCRUM-master: Üzeyir Ethem Varol,
+    Notulist:     Twenne Elffers, 
+    Voorlichter:  Tim Kunst, 
+    Trello:       Salman Mirza
 
 Deel 2:
 
