@@ -20,8 +20,7 @@ De hooftaken zijn:
     SCRUM-master: Üzeyir Ethem Varol (500835777),
     Notulist:     Twenne Elffers (500831306), 
     Voorlichter:  Tim Kunst (500828214), 
-    Trello:       Salman Mirza (500828131) en 
-    vice-leider:  Soedarsh Mahangoo (500837426)
+    Trello:       Salman Mirza (500828131)
 
 Deel 2:
 
